@@ -14,10 +14,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        // Userが作られちゃうのでコメントアウト
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // MemoSeeder（シーダークラス）の呼び出し
+        if (config('app.env') == 'local') {
+            $this->call(MemoSeeder::class);
+        }
+
+
     }
 }
